@@ -2,6 +2,44 @@
 
 using namespace std;
 
+void display_array(int array[], const int length){
+    cout << "[";
+    if(length > 0) {
+        cout << array[0];
+    }
+
+    for(int i = 1; i < length; i++){
+        // if(i != 0) {
+        //     cout <<", ";
+        // }
+        cout << ", " << array[i];
+    }
+    cout << "]" << endl;
+}
+
+void display_array_ptr(int array[], const int length) {
+    cout << "[";
+    for(int *ptr = array, *end = array + length; ptr < end; ++ptr){
+        if (ptr != array) {
+            cout <<", ";
+        }
+        cout << *ptr;
+    }
+    cout << "]";
+}
+
+void pass_by_value(int x) {
+    x = 10;
+}
+
+void pass_by_pointer(int *x) {
+    *x = 10;
+}
+
+void pass_by_reference(int &x) {
+    x = 10;
+}
+
 int main() {
 
     int x = 5, y = 6, *z = &x;
@@ -39,6 +77,25 @@ int main() {
         values[i] = i;
     }
     // valgrind allows us to memory debug
+    // valgrind will be used to test our code in the future
+    //delete [] values;
+
+    display_array(values, y);
+    display_array_ptr(values, y);
+    delete [] values;
+
+    x = 5;
+    pass_by_value(x);
+    cout <<""<< endl;
+    cout << "x = " << x << endl;
+
+    x = 5;
+    pass_by_pointer(&x); // C style way
+    cout << "x = " << x << endl;
+
+    x = 5;
+    pass_by_reference(x);
+    cout << "x = " << x << endl;
 
     return 0;
 }
