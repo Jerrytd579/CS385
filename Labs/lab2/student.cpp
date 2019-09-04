@@ -22,7 +22,7 @@ class Student{
             return gpa_;
         }
         void print_info() const{
-            cout << full_name() << ", GPA: " << setprecision(2) << fixed << gpa() << ", ID: " << id() << endl;
+            cout << full_name() << ", GPA: " << fixed << setprecision(2) << gpa() << ", ID: " << id() << endl;
         }
     private:
         string first_;
@@ -70,7 +70,7 @@ int main() {
         cin >> last_name;
         gpa = -1;
         while (gpa < 0 || gpa > 4) {
-            cout << "Enter student's GPA (0.0‐4.0): ";
+            cout << "Enter student's GPA (0.0-4.0): ";
             cin >> gpa;
         }
         cout << "Enter student's ID: ";
