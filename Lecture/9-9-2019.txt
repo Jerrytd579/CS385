@@ -1,0 +1,55 @@
+
+________________________________________________________________________________________________
+An algorithm is a sequence of unambiguous instructions for solving a problem, i.e., for obtaining
+a required outputfor any legitimate input in a finite amount of time. 
+
+There are four important points :
+
+1) The nonambiguity requirement for each step of an algorithm cannot be compromised.
+2) The range of inputs for which an algorithm works has to be specified carefully.
+3) The same algorithm can be represented in several different ways.
+4) There may exist several algorithms for solving the same problem.
+
+Let's say there are 22 gloves in a drawer. 5 pairs happen to be red, 4 are yellow, 2 are green.
+How many do you have to grab in order to guarantee you have at least 1 matching pair.
+The answer is 12. In the worst case scenario, you end up grabbing 12 cause left and right gloves.
+
+If there were 22 socks, it would be 4.
+________________________________________________________________________________________________
+
+Sequential search
+
+int sequential_search(int array[], const int size, int key) {
+    for(int i = 0; i < size, i++) {
+        if(array[i] == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+Assume :
+1) The probability of a successful search is equal to p(0<=p<=1).
+2) The probability of the first match occurring in the ith position is the same for every i.
+
+With a successful search, the probability of the first match occurring in the ith position is p/n
+for every i.
+Number of comparisons : i
+With an unsuccessful search, the number of comparisons will be n, with the probability of such a search
+being 1-p.
+
+Cavg(n) = [1*(P/n) + 2*(P/n)... + i(P/n) + .... + n*(P/n)] + n(1-p)
+    = P/n[1 + 2 + ... + i + ... + n] + n(1-P)
+    = P/n*((n(n+1))/2) + n(1-P)
+    = (P(n+1)2) + n(1-P)
+
+    if p = 1 => search is successful, number of probes is (n+1)/2.
+    if p = 0 => search is unsuccessful, number of probes is n.
+    
+________________________________________________________________________________________________
+
+O(g(n)) = {f(n) : Ǝ positive constants c and n such that 0 <= f(n) <= c*g(n) ∀ n>= n0}
+
+Ω(g(n)) = {f(n): Ǝ positive constants c and n0 such that 0 <= c*g(n) <= f(n) ∀ n >= n0}
+
+Θ(g(n)) = {f(n): Ǝ positive constants c1, c2, and n0 such that O <= c1*g(n) <= f(n) <= c2*g(n) ∀ n>= n0}
