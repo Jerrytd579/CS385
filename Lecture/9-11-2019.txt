@@ -1,0 +1,65 @@
+O-notation
+
+100n + 5 => is this bound to O(n^2)
+100n + 5 <= 100n + n (true for all n >= 5) = 101n <= 101n^2
+    c = 101
+    n0 = 5
+
+OR
+
+100n + 5 <= 100n + 5n (true for all n greater than or equal to 1) = 105n <= 105n^2
+    c = 105
+    n0 = 1
+
+OR
+
+100n + 5 <= 1n^2 (true for all n greater than or equal to 101)
+    c = 1
+    n0 = 101
+As c increases, n0 decreases. All of these answers are correct. In this course, we try to minimize the value of c.
+
+_____________________________________________________________________________________________________________________
+
+Find an upper bound for f(n) = 3n + 8
+    O(n)
+3n + 8 <= 4n (holds for all n >= 8)
+    c = 4
+    n0 = 8
+
+OR
+
+3n + 8 <= 3n + 8n
+3n + 8 <= 11n (holds true for all n >= 1)
+8 <= 8n
+    c = 11
+    n0 = 1
+
+_____________________________________________________________________________________________________________________
+
+Find an upperbound for f(n) = n^2 + 1
+    O(n^2)
+n^2 + 1 <= 2n^2 (holds true for all n >= 1)
+    c = 2
+    n0 = 1
+
+_____________________________________________________________________________________________________________________
+Omega notation
+is n^3 part of the set omega(n^2)? yes
+
+cn^2 <= n^3
+    c = 1
+    n0 = 1
+
+_____________________________________________________________________________________________________________________
+
+Find a lower bound for f(n) = 5n^2
+
+omega(n^2) <= 5n^2
+5n^2 <= 5n^2
+    c = 5
+    n0 = 1
+
+_____________________________________________________________________________________________________________________
+
+Does f(n) = 100n + 5 (is it a member) of omega(n^2)? no
+    there exists positive constants c and n0 such that 0 <= cn^2 <= 100n + 5

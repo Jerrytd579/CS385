@@ -46,7 +46,7 @@ PrimesSieve::PrimesSieve(int limit) :
 void PrimesSieve::display_primes() const {
     // TODO: write code to display the primes in the format specified in the
     // requirements document.
-    cout << "\nNumber of primes found: " << count_num_primes() << endl;
+    cout << "\nNumber of primes found: " << num_primes() << endl;
     cout << "Primes up to " << limit_ << ":" << endl;
 
     // If all the primes cannot fit on one line, wrap around to the next line.
@@ -58,7 +58,7 @@ void PrimesSieve::display_primes() const {
 
     // If the number of primes will fit onto one row
     if(num_primes_ <= primes_per_row){
-        for(int i = 2; i <= limit_; i++) {
+        for(int i = 0; i <= limit_; i++) {
             if(is_prime_[i]) {
                 if(i == max_prime_) {
                     cout << i;
@@ -70,13 +70,32 @@ void PrimesSieve::display_primes() const {
         }
     }
     // If the number of primes will not fit onto one row
-    
+    else{
+        for (int i = 0, count = 1; i <= limit_; i++){
+            if (is_prime_[i] == true){
+                if(count != primes_per_row){
+                    if (i != max_prime_){
+                        cout << setw(max_prime_width) << i << " ";
+                        count++;
+                    }
+                    else{
+                        cout << setw(max_prime_width) << i;
+                        count++;
+                    }
+                }
+                else{
+                    cout << setw(max_prime_width) << i << endl;
+                    count = 1;
+                }
+            }
+        }
+    }
 }
 
 int PrimesSieve::count_num_primes() const {
-    int count = 0;
+    int count = num_primes_;
 
-    for(int i = 0; i < limit_; i++) {
+    for(int i = 2; i <= limit_; i++) {
         if(is_prime_[i]) {
             count++;
         }
@@ -92,27 +111,31 @@ void PrimesSieve::sieve() {
 
     // Sieve algorithm
     for(int i = 2; i <= sqrt(limit_); i++) {
-        if(is_prime_[i] == true) {
+        if(is_prime_[i]) {
             for(int j = pow(i, 2); j <= limit_; j = j + i){
                 is_prime_[j] = false;
             }
+        }
+    }
+
+    num_primes_ = count_num_primes();
+
+    for(int k = limit_; k >= 2; k--){
+        if(is_prime_[k]){
+            max_prime_ = k;
+            break;
         }
     }
 }
 
 int PrimesSieve::num_digits(int num) {
     // Hint: No strings are needed. Keep dividing by 10.
-    if(num < 10) {
-        return 1;
+    int digits = 0;
+    while(num != 0) {
+        num /= 10;
+        digits++;
     }
-    
-    int count = 1;
-    do{
-        num = floor(num / 10);
-        count++;
-    }
-    while(num > 10);
-    return count;
+    return digits;
 }
 
 int main() {
