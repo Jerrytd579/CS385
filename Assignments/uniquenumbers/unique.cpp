@@ -13,7 +13,6 @@ using namespace std;
 bool is_all_lowercase(const string &s) {
     // Returns true if all characters in string are lowercase
     // letters in the English alphabet; false otherwise.
-    //int count = 0;
     for(unsigned int i = 0; i < s.length(); i++){
         if(isupper(s[i]) || !isalpha(s[i]))
             return false;
