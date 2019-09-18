@@ -5,7 +5,7 @@ CXXFLAGS = -g -std=c++11 -Wall -Werror -pedantic-errors -fmessage-length=0
 # -g means to include debug info into the executable
 # -O3 will improve the speed vs -g
 # -std=c++11 lets us use the c++ 11 standard, there are newer standards
-# -Wall will treat out code very strictly - anything slightly off will let us know, always put -Wall
+# -Wall will treat out code very strictly - anything slightly off will let us know, always put -Wall, warn all
 # -Werror turns all warnings into errors
 # -pedantic-errors helps to catch bugs at compile times
 
